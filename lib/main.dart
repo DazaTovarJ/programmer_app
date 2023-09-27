@@ -50,28 +50,36 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.all(16),
           color: theme.colorScheme.primary,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(
-                    Icons.person,
-                    size: 32,
-                    color: theme.colorScheme.onPrimary
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Icon(
+                      Icons.person,
+                      size: 32,
+                      color: theme.colorScheme.onPrimary
+                    ),
+                  ],
+                ),
               ),
-              Text(
-                "¡Hola, Pedro!",
-                style: headingStyle,
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                child: Text(
+                  "¡Hola, Pedro!",
+                  style: headingStyle,
+                ),
               ),
-              Text(
-                "Bienvenido a la app del programador",
-                style: textStyle,
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+                child: Text(
+                  "Bienvenido a la app del programador",
+                  style: textStyle,
+                ),
               ),
             ],
           ),
