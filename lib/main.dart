@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: const HomePage(),
@@ -41,8 +41,42 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Hello programmer")),
+    final theme = Theme.of(context);
+    final headingStyle = theme.textTheme.displaySmall!
+        .copyWith(color: theme.colorScheme.onPrimary);
+    final textStyle = theme.textTheme.bodyMedium!
+        .copyWith(color: theme.colorScheme.onPrimary);
+
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          color: theme.colorScheme.primary,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(
+                    Icons.person,
+                    size: 32,
+                    color: theme.colorScheme.onPrimary
+                  ),
+                ],
+              ),
+              Text(
+                "¡Hola, Pedro!",
+                style: headingStyle,
+              ),
+              Text(
+                "Bienvenido a la app del programador",
+                style: textStyle,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
