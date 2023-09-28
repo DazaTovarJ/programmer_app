@@ -29,10 +29,48 @@ class CommentsWidget extends StatelessWidget {
             "Tópicos Populares",
             style: theme.textTheme.headlineSmall,
           ),
+          SizedBox(
+            height: 130,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                _buildLanguageCard("Java", const Color(0xFFB07219), 30),
+                _buildLanguageCard("CSS", const Color(0xFF563D7C), 24),
+                _buildLanguageCard("JS", const Color(0xFFF1E05A), 10),
+              ],
+            ),
+          ),
           Text(
             "Tendencias",
             style: theme.textTheme.headlineSmall,
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLanguageCard(String language, Color color, int posts) {
+    final textColor =
+        color.computeLuminance() > 0.5 ? Colors.black : Colors.white;
+    final headingStyle =
+        theme.textTheme.headlineSmall!.copyWith(color: textColor);
+    final textStyle = theme.textTheme.bodyMedium!.copyWith(color: textColor);
+
+    return Container(
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: const BorderRadius.all(Radius.circular(16.0))
+      ),
+      width: 128,
+      height: 128,
+      margin: const EdgeInsets.only(right: 16.0),
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(language, style: headingStyle),
+          Text("$posts posts", style: textStyle,)
         ],
       ),
     );
