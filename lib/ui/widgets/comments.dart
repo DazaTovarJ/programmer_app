@@ -25,18 +25,28 @@ class CommentsWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Tópicos Populares",
-            style: theme.textTheme.headlineSmall,
-          ),
-          SizedBox(
-            height: 130,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
+          Container(
+            margin: const EdgeInsets.only(bottom: 16.0),
+            child: Column(
               children: [
-                _buildLanguageCard("Java", const Color(0xFFB07219), 30),
-                _buildLanguageCard("CSS", const Color(0xFF563D7C), 24),
-                _buildLanguageCard("JS", const Color(0xFFF1E05A), 10),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: Text(
+                    "Tópicos Populares",
+                    style: theme.textTheme.headlineSmall,
+                  ),
+                ),
+                SizedBox(
+                  height: 128,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      _buildLanguageCard("Java", const Color(0xFFB07219), 30),
+                      _buildLanguageCard("CSS", const Color(0xFF563D7C), 24),
+                      _buildLanguageCard("JS", const Color(0xFFF1E05A), 10),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
