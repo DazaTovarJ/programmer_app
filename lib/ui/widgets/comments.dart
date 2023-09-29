@@ -12,9 +12,7 @@ class CommentsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16.0),
-      width: MediaQuery.of(context)
-          .size
-          .width, // Comentar al terminar de co
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: theme.colorScheme.primaryContainer,
         borderRadius: const BorderRadius.only(
@@ -50,9 +48,41 @@ class CommentsWidget extends StatelessWidget {
               ],
             ),
           ),
-          Text(
-            "Tendencias",
-            style: theme.textTheme.headlineSmall,
+          Expanded(
+            child: Column(
+              children: [
+                Text(
+                  "Tendencias",
+                  style: theme.textTheme.headlineSmall,
+                ),
+                Expanded(
+                  child: ListView(
+                    children: const [
+                      TrendsWidget(
+                        profileIcon: Icon(Icons.person_outline),
+                        user: "Miguel Pérez",
+                        timeInterval: "Hace 1 hora",
+                        post: "Java es un lenguaje de programación y una "
+                            "plataforma informática que fue comercializada "
+                            "por primera vez por Sun Microsystems",
+                        likes: 120,
+                        views: 200,
+                      ),
+                      TrendsWidget(
+                        profileIcon: Icon(Icons.person_outline),
+                        user: "Mirna Fonseca",
+                        timeInterval: "Hace 2 horas",
+                        post: "Most of the exercises focus on the C++ "
+                            "programming language, the C++ standard library, "
+                            "and... (PDF)",
+                        likes: 50,
+                        views: 120,
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ],
       ),
@@ -81,6 +111,65 @@ class CommentsWidget extends StatelessWidget {
         children: [
           Text(language, style: headingStyle),
           Text("$posts posts", style: textStyle,)
+        ],
+      ),
+    );
+  }
+}
+
+class TrendsWidget extends StatelessWidget {
+  final Widget profileIcon;
+  final String user;
+  final String timeInterval;
+  final String post;
+  final int likes;
+  final int views;
+
+  const TrendsWidget(
+      {super.key,
+      required this.profileIcon,
+      required this.user,
+      required this.timeInterval,
+      required this.post,
+      required this.likes,
+      required this.views});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Column(
+        children: [
+          ListTile(
+            title: Text(user),
+            subtitle: Text(timeInterval),
+            leading: profileIcon,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+            child: Text(post),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.thumb_up_alt_outlined),
+                    const SizedBox(width: 8.0),
+                    Text("$likes Likes"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Icon(Icons.remove_red_eye_outlined),
+                    const SizedBox(width: 8.0),
+                    Text("$views Views"),
+                  ],
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
